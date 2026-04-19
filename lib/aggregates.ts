@@ -16,6 +16,10 @@ function groupBy<T>(items: T[], key: (item: T) => string) {
 
 /* ── Capacidad instalada (operational plants) ───────────────────────── */
 
+export function filtrarErnc(plantas: PlantaOperacional[]) {
+  return plantas.filter((p) => p.clasificacion === "ERNC");
+}
+
 export function totalNetaMw(plantas: PlantaOperacional[]) {
   return plantas.reduce((s, p) => s + (p.potenciaNetaMw ?? 0), 0);
 }

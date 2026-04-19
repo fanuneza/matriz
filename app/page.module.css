@@ -1,142 +1,311 @@
-.page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+/* ── Scroll offset for fixed header (56px) ──────────────────────────── */
+:global(#inicio),
+:global(#regiones),
+:global(#tecnologias),
+:global(#crecimiento),
+:global(#net-billing) {
+  scroll-margin-top: 56px;
 }
 
+/* ── Layout ─────────────────────────────────────────────────────────── */
 .main {
+  padding-top: 56px;
+}
+
+.error {
+  display: grid;
+  place-items: center;
+  min-height: 60vh;
+  color: var(--text-muted);
+  font-size: var(--step-1);
+  padding: var(--space-lg);
+  text-align: center;
+}
+
+/* ── Hero ───────────────────────────────────────────────────────────── */
+.hero {
+  min-height: calc(100svh - 56px);
   display: flex;
-  flex: 1;
-  width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
-}
-
-.intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
-}
-
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
-}
-
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
-}
-
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
-}
-
-.ctas a {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
+  position: relative;
+  background-image: url("/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  padding-block: var(--space-xl);
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  pointer-events: none;
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
+.heroInner {
+  position: relative; /* sit above the overlay */
+  max-width: 780px;
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
+/* Override muted text colours inside the hero so they read against the photo */
+.heroInner p {
+  color: #fff;
+}
 
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
+.heroInner p strong {
+  color: #fff;
+}
+
+.eyebrow {
+  font-size: var(--step--1);
+  color: var(--amber-dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-sm);
+  max-width: none;
+}
+
+.heroTitle {
+  font-size: var(--step-5);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin-bottom: var(--space-md);
+}
+
+.accent {
+  color: var(--amber);
+}
+
+.heroLead {
+  font-size: var(--step-1);
+  color: var(--text-muted);
+  line-height: 1.65;
+  max-width: 58ch;
+  margin-bottom: var(--space-lg);
+}
+
+.heroStats {
+  display: flex;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.heroMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: var(--space-md);
+  font-size: var(--step--1);
+  color: var(--text-dim);
+  max-width: none;
+}
+
+.heroMetaDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--amber-dim);
+  flex-shrink: 0;
+}
+
+/* ── Chapters ───────────────────────────────────────────────────────── */
+.chapter {
+  padding-block: var(--space-lg);
+  border-top: 1px solid var(--border);
+}
+
+.chapterAlt {
+  background: var(--bg-surface);
+}
+
+.chapterLayout {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: var(--column-gap);
+  align-items: start;
+}
+
+.chapterText {
+  position: sticky;
+  top: calc(56px + var(--space-md));
+}
+
+.chapterNum {
+  font-size: var(--step-3);
+  font-weight: 700;
+  color: var(--border);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: var(--space-sm);
+  max-width: none;
+}
+
+.chapterText h2 {
+  margin-bottom: var(--space-md);
+}
+
+.chapterText p {
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+  line-height: 1.75;
+}
+
+.chapterText p strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.chapterChart {
+  padding-top: 0.25rem;
+}
+
+.chartTitle {
+  font-size: var(--step-0);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+  max-width: none;
+}
+
+.chartSub {
+  font-size: var(--step--1);
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+  max-width: none;
+}
+
+/* ── Chart loading shimmer ──────────────────────────────────────────── */
+:global(.chart-loading) {
+  height: 360px;
+  background: var(--bg-subtle);
+  border-radius: 4px;
+  animation: shimmer 1.4s ease infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
+}
+
+/* ── Cierre ─────────────────────────────────────────────────────────── */
+.cierre {
+  padding-block: var(--space-lg);
+  border-top: 1px solid var(--border);
+}
+
+.cierreTitle {
+  font-size: var(--step-3);
+  color: var(--amber);
+  margin-bottom: var(--space-md);
+  max-width: 22ch;
+}
+
+.cierreLead {
+  max-width: 65ch;
+  font-size: var(--step-1);
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   RESPONSIVE — 1024px (landscape tablet / small desktop)
+══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .chapterLayout {
+    grid-template-columns: 1fr 1.2fr;
   }
 }
 
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
+/* ══════════════════════════════════════════════════════════════════════
+   RESPONSIVE — 768px (tablet)
+══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding-block: var(--space-lg);
+    align-items: flex-start;
+    padding-top: calc(var(--space-lg) + 1rem);
   }
 
-  .intro {
-    gap: 16px;
+  .heroTitle {
+    font-size: clamp(2rem, 8vw, var(--step-5));
   }
 
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
+  .heroStats {
+    gap: var(--space-md);
+  }
+
+  .chapter {
+    padding-block: var(--space-md);
+  }
+
+  .chapterLayout {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  /* Remove sticky on mobile — text sits above chart */
+  .chapterText {
+    position: static;
+  }
+
+  .chapterNum {
+    font-size: var(--step-2);
+  }
+
+  .cierre {
+    padding-block: var(--space-md);
+  }
+
+  :global(.chart-loading) {
+    height: 280px;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+/* ══════════════════════════════════════════════════════════════════════
+   RESPONSIVE — 480px (phones)
+══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: clamp(1.75rem, 9vw, 2.5rem);
   }
 
-  .page {
-    --background: #000;
-    --foreground: #000;
+  .heroLead {
+    font-size: var(--step-0);
+  }
 
-    --text-primary: #ededed;
-    --text-secondary: #999;
+  .heroStats {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
 
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+  .chapter {
+    padding-block: 1.5rem;
+  }
+
+  .cierre {
+    padding-block: 1.5rem;
+  }
+
+  .cierreTitle {
+    font-size: var(--step-2);
+  }
+
+  .cierreLead {
+    font-size: var(--step-0);
+  }
+
+  :global(.chart-loading) {
+    height: 220px;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   RESPONSIVE — 320px (small phones)
+══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 320px) {
+  .heroTitle {
+    font-size: 1.65rem;
   }
 }

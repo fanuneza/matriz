@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Matriz — Chile y la nueva matriz energética",
+  title: "Proyecto Matriz: Chile y la nueva matriz energética",
   description:
     "Una exploración visual de la expansión renovable en Chile a partir de datos abiertos de la Comisión Nacional de Energía.",
   openGraph: {

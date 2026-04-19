@@ -7,7 +7,7 @@ export type PlantaOperacional = {
   nombre: string;
   propietario: string;
   tecnologia: string;
-  clasificacion?: string;
+  clasificacion: "ERNC" | "Convencional" | string;
   leyErnc?: string;
   estado: string;
   potenciaBrutaMw?: number;
@@ -54,7 +54,7 @@ export function normalizePlanta(raw: RawCap): PlantaOperacional {
     nombre:          raw.central,
     propietario:     raw.propietario,
     tecnologia:      raw.tipo_de_energia,
-    clasificacion:   raw.clasificacion,
+    clasificacion:   raw.clasificacion ?? "",
     leyErnc:         raw.ley_ernc,
     estado:          raw.estado,
     potenciaBrutaMw: parseFloatSafe(raw.potencia_bruta_mw),
